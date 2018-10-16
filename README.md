@@ -1,4 +1,4 @@
-# trabalhosemestral-octave
+# Handwritten Digits Recognition using Neural Network
 Uma rede neural criada em GNU Octave que reconhece imagens de dígitos entre 0 e 9 escritos a mão.
 
 O projeto está dividido em quatro pastas, sendo elas: *mnist_dataset*, *no_bias*, *using_bias* e *samples*. A pasta *mnist_dataset* contém os arquivos do dataset chamado [MNIST](http://yann.lecun.com/exdb/mnist/), o que inclui um arquivo chamado *t10k-images.idx3-ubyte* que contém 60 mil imagens de números escritos a mão utilizados no treinamento da rede e, em conjunto com as imagens, um arquivo chamado *t10k-labels.idx1-ubyte* que contém 60 mil labels que correspondem aos valores escritos em cada imagem. Além disso, possui mais 10 mil imagens (e 10 mil labels) utilizadas para testar a rede, contidos nos arquivos *train-images.idx3-ubyte* e *train-labels.idx1-ubyte*. Essas imagens e labels são lidos, estruturados e retornados pelas funções contidas nos arquivos *loadMNISTImages.m* (que retorna as imagens) e *loadMNISTLabels.m* (que retorna os labels).
@@ -33,13 +33,13 @@ Após o treinamento ter sido finalizado, é possível submeter imagens contendo 
 Para submeter uma imagem basta chamar a função *check_input*, passando como parâmetro os pesos e bias (no caso da rede 2) retornados pela função *start_network_training* na etapa anterior, juntamente com o caminho e nome da imagem de input, dessa forma:
 
 ```
-answer = check_input (weight1, weight2, bias2, bias3, "../samples/4.jpg")
+answer = check_input (weight1, weight2, "../samples/4.jpg")
 ```
 
 ou, no caso da rede 2:
 
 ```
-answer = check_input (weight1, weight2, "../samples/4.jpg")
+answer = check_input (weight1, weight2, bias2, bias3, "../samples/4.jpg")
 ```
 
 onde o último argumento é uma string contendo o caminho e nome da imagem escolhida, podendo ser alterado para o diretório e nome de uma imagem criada por você.
