@@ -1,51 +1,60 @@
-# Handwritten Digits Recognition using Neural Network
-Uma rede neural criada em GNU Octave que reconhece imagens de dígitos entre 0 e 9 escritos a mão.
+A neural network that recognizes handwritten digits between 0 and 9 in images, developed using the Octave language.
 
-O projeto está dividido em quatro pastas, sendo elas: *mnist_dataset*, *no_bias*, *using_bias* e *samples*. A pasta *mnist_dataset* contém os arquivos do dataset chamado [MNIST](http://yann.lecun.com/exdb/mnist/), o que inclui um arquivo chamado *t10k-images.idx3-ubyte* que contém 60 mil imagens de números escritos a mão utilizados no treinamento da rede e, em conjunto com as imagens, um arquivo chamado *t10k-labels.idx1-ubyte* que contém 60 mil labels que correspondem aos valores escritos em cada imagem. Além disso, possui mais 10 mil imagens (e 10 mil labels) utilizadas para testar a rede, contidos nos arquivos *train-images.idx3-ubyte* e *train-labels.idx1-ubyte*. Essas imagens e labels são lidos, estruturados e retornados pelas funções contidas nos arquivos *loadMNISTImages.m* (que retorna as imagens) e *loadMNISTLabels.m* (que retorna os labels).
+<p align="center">
+  <img width="640" height="480" src="https://user-images.githubusercontent.com/23726229/47057552-9f703d00-d197-11e8-9df3-f9d4d371cfa6.png">
+</p>
 
-Ambas as pastas *no_bias* e *using_bias* possuem implementações da mesma rede neural. A principal diferença entre as duas é que a rede contida na pasta *no_bias* (rede 1) é implementada sem utilizar os vetores de bias enquanto que a rede da pasta *using_bias* (rede 2) utiliza tais vetores.
-Os bias são vetores auxiliares aos vetores existentes em cada camada da rede neural e servem para controlar a ativação de cada neurônio da rede. Por exemplo, uma camada com 30 neurônios (ou seja, um vetor de 30 posições) necessitaria de 30 bias, um para cada neurônio (isto é, um vetor auxiliar com o mesmo tamanho que a camada de neurônios).
+**Note**: Before we start, be aware that inside the folder *documents* you can find an article and a banner (both written in portuguese) explaining the project in a more detailed way. 
 
-Por não utilizar esses vetores de bias, a rede 1 utiliza fórmulas mais simples para calcular a taxa de erro da rede, facilitando a implementação dos algoritmos de *backpropagation*. Porém, em consequência da facilitação de implementação, essa rede tende a ter uma precisão menor que a rede 2 (que utiliza os bias), tendo em média 91% de precisão, e requer um maior número de sessões de treino para atingir tal precisão.
+### Understanding the project
 
-No caso da rede 2, a quantidade de sessões de treino necessárias são menores e a precisão é maior, chegando a 95%, porém a complexidade dos algoritmos de *backpropagation* aumenta consideravelmente.
+The project is separeted into four folders: *mnist_dataset*, *no_bias*, *using_bias*, and *samples*. The *mnist_dataset* folder contains the files from the [MNIST dataset](http://yann.lecun.com/exdb/mnist/), which includes a file called *t10k-images.idx3-ubyte*, that contains 60 thousand images of handwritten digits used in the network training and another file called *t10k-labels.idx1-ubyte*, which contains 60 thousand labels that match the values written in each image. Besides that, the dataset has an additional 10 thousand images (and 10 thousand labels) used to test the network, stored in the files *train-images.idx3-ubyte* and *train-labels.idx1-ubyte*. These images and labels are read, structured and returned by the functions from the files *loadMNISTImages.m* (which returns the images) and *loadMNISTLabels.m* (which returns the labels).
 
-Antes de poder utilizar ambas as redes neurais é preciso treiná-las. Para inicar o treinamento de uma das redes basta, pela linha de comando do Octave, acessar o diretório da rede escolhida (exemplo: "trabalhosemestral-octave/using_bias/") e chamar a função de treinamento da rede.
+Both *no_bias* and *using_bias* folders have implementations of the same neural network. The main difference between the two is that the network implemented in the *no_bias* folder doesn't use the biases vectors whereas the network from the *using_bias* folder uses such vectors. The biases vectors work as auxiliary vectors for each layer of the neural network, controlling the activation of each neuron of the network. For example, a layer with 30 neurons (i.e., a 30-position vector) would require 30 bias, one for each neuron (i.e., an auxiliary vector with the same size of the layer).
 
-No caso da rede 1 a função é chamada da seguinte forma:
+By not using these biases vectors, the *no_bias* network uses easier formulas to calculate the network error rate, simplifying the implementation of the *backpropagation* algorithm. However, as a result of simplifying the implementation, this network tends to have a lower accuracy than the *using_bias* network, having an average accuracy of 91%, and requires a larger number of training sessions to achieve such accuracy.
+
+In the case of the *using_bias* network, the amount of training sessions required is smaller and the accuracy is higher, reaching an average accuracy of 95%, but the complexity of the *backpropagation* algorithm increases considerably.
+
+### Running the project
+
+To run this project you will need to download the GNU Octave [here](https://www.gnu.org/software/octave/).
+
+Before you be able to use both neural networks you need to train them. To start the training of one of the networks, simply access the directory of the chosen network (for example: "./handwritten-digits-recognition/using_bias/") and call the network training function from the Octave command line.
+
+For the *no_bias* network the function is called as follows:
 
 ```
 [weight1, weight2] = start_network_training ();
 ```
 
-e, para a rede 2:
+and, for the *using_bias* network:
 
 ```
 [weight1, weight2, bias2, bias3] = start_network_training ();
 ```
 
-**Obs:** os valores entre colchetes são as matrizes de pesos e vetores de bias (no caso da rede 2) retornados pela função de treinamento.
+** Note:** the values in brackets are the weights matrices and biases vectors returned by the training function.
 
-Quando o treino terminar (esse processo pode levar vários minutos, até meia hora, dependendo do computador) uma mensagem aparecerá, exibindo a quantidade de acertos que a rede teve, utilizando como base de teste as 10 mil imagens de teste disponibilizadas pelo dataset MNIST.
+When the training is finished (this process may take several minutes, up to half an hour) a message will appear, showing how many images the network classified correctly, using as a test base the 10 thousand test images provided by the MNIST dataset.
 
-Após o treinamento ter sido finalizado, é possível submeter imagens contendo números para que a rede tente identificá-los. **As imagens submetidas possuem algumas restrições**, sendo elas: precisam ser do tipo '.jpg', possuir fundo branco, dimensões de 28 x 28 pixels e conter apenas um único dígito entre 0 e 9. A pasta *samples* possui algumas imagens de exemplo que podem ser utilizadas para teste, mas fique a vontade para criar suas próprias se quiser.
+After the training has been finalized, it is possible to submit images containing numbers for the network to try to identify them. **The submitted images have some restrictions**, they must be of '.jpg' format, have a white background, dimensions of 28 x 28 pixels and have only a single digit between 0 and 9. The *samples* folder has some sample images that can be used for testing, but feel free to create your own if you want.
 
-Para submeter uma imagem basta chamar a função *check_input*, passando como parâmetro os pesos e bias (no caso da rede 2) retornados pela função *start_network_training* na etapa anterior, juntamente com o caminho e nome da imagem de input, dessa forma:
+In order to submit an image, just call the function *check_input*, passing as a parameter the weights and biases (in the case of *using_bias* network) returned by the function *start_network_training* in the previous step, together with the path and name of the input image, like this:
 
 ```
 answer = check_input (weight1, weight2, "../samples/4.jpg")
 ```
 
-ou, no caso da rede 2:
+or, for the *using_bias* network:
 
 ```
 answer = check_input (weight1, weight2, bias2, bias3, "../samples/4.jpg")
 ```
 
-onde o último argumento é uma string contendo o caminho e nome da imagem escolhida, podendo ser alterado para o diretório e nome de uma imagem criada por você.
+After executing this command, a window showing the reconstruction of the submitted image will be opened and the hypothesis of the result reached by the network will be displayed in the terminal.
 
-**Obs:** os comandos acima devem ser executados sem o uso de ";" no final da linha para que assim os resultados sejam exibidos no terminal. Caso se utilize ";" o resultado retornado não será mostrado.
+## Acknowledgments
+This project was made during a class called Programming Languages taught by Professor Luciana Pereira de Araújo Kohler, at FURB College in the city of Blumenau-SC, Brazil. For the most part of the project I used the book Neural Networks and Deep Learning written by Michael Nielsen avaliable [here](http://neuralnetworksanddeeplearning.com/index.html) as a reference material.
 
-Após executar esse comando uma janela contendo a reconstrução da imagem submetida será aberta e a hipótese de resultado alcançado pela rede será exibida no terminal.
 
-Caso queira, algumas das configurações da rede como quantidade de sessões de treino (*epochs*), tamanho da camada interna (*hidden_neurons*), tamanho dos mini batches (*batch_size*) e a taxa de aprendizado (*learning_rate*) podem ser alteradas no arquivo *start_network_training* referente a cada rede. É possível alterar tais valores para conseguir uma melhor combinação entre taxa de acerto e tempo de treino da rede. Por exemplo, atribuir um número menor aos *epochs* fará com que o tempo de treinamento diminua, porém a precisão da rede também poderá diminuir.
