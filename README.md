@@ -34,7 +34,7 @@ and, for the *using_bias* network:
 [weight1, weight2, bias2, bias3] = start_network_training ();
 ```
 
-** Note:** the values in brackets are the weights matrices and biases vectors returned by the training function.
+**Note:** the values in brackets are the weights matrices and biases vectors returned by the training function.
 
 When the training is finished (this process may take several minutes, up to half an hour) a message will appear, showing how many images the network classified correctly, using as a test base the 10 thousand test images provided by the MNIST dataset.
 
