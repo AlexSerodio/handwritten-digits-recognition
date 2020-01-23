@@ -55,6 +55,6 @@ answer = check_input (weight1, weight2, bias2, bias3, "../samples/4.jpg")
 After executing this command, a window showing the reconstruction of the submitted image will be opened and the hypothesis of the result reached by the network will be displayed in the terminal.
 
 ## Acknowledgments
-This project was made during a class called Programming Languages taught by Professor Luciana Pereira de Araújo Kohler, at FURB College in the city of Blumenau-SC, Brazil. For the most part of the project I used the book Neural Networks and Deep Learning written by Michael Nielsen avaliable [here](http://neuralnetworksanddeeplearning.com/index.html) as a reference material.
+This project was made during a class called *Programming Languages* taught by Professor Luciana Pereira de Araújo Kohler, at FURB College in the city of Blumenau-SC, Brazil. The project was then presented at the XXVI edition of the [SEMINCO - Seminário de Informática e Computação](http://www.inf.furb.br/seminco/2018/artigos), in october 2018. 
 
-
+For the most part of the project I used as reference the book *Neural Networks and Deep Learning* written by Michael Nielsen, avaliable [here](http://neuralnetworksanddeeplearning.com/index.html).
